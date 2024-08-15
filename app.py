@@ -1,27 +1,14 @@
 import streamlit as st
 import pandas as pd
-import gspread
-from google.oauth2.service_account import Credentials
-import datetime
 
-# Set up Google Sheets API
-scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
-         "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
+# Use the Google Sheets link with ?output=csv to get the data as a CSV
+sheet_url = "https://docs.google.com/spreadsheets/d/1WLn7DH3F1Sm5ZSEHgWVEILWvvjFRsrE0b9xKrYU43Hw/export?format=csv"
 
-creds = Credentials.from_service_account_file("path_to_your_google_creds.json", scopes=scope)
-client = gspread.authorize(creds)
+# Read the Google Sheets data into a pandas DataFrame
+df = pd.read_csv(sheet_url)
 
-# Load data from Google Sheets
-sheet = client.open("Machu Pouches").worksheet("Sales")
-data = sheet.get_all_records()
-
-# Convert data to DataFrame
-df = pd.DataFrame(data)
-
-# Convert columns to appropriate data types
-df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
-df['Payment Amount'] = df['Payment Amount'].replace('[\$,]', '', regex=True).astype(float)
-df['Amount'] = df['Amount'].astype(int)
+# Streamlit app
+st.title("Machu Pouches Sales Dashboard")
 
 # Sidebar Filters
 st.sidebar.header("Filters")
