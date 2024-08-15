@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+import plotly.express as px
 
 # Use the Google Sheets link with ?output=csv to get the data as a CSV
 sheet_url = "https://docs.google.com/spreadsheets/d/1WLn7DH3F1Sm5ZSEHgWVEILWvvjFRsrE0b9xKrYU43Hw/export?format=csv"
@@ -82,77 +82,62 @@ st.header("Sales Breakdown")
 
 # Pie chart for Revenue by Product
 st.subheader("Revenue by Product")
-fig, ax = plt.subplots()
-ax.pie(revenue_by_product, labels=revenue_by_product.index, autopct='%1.1f%%', colors=plt.cm.Paired.colors)
-ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-st.pyplot(fig)
+fig = px.pie(filtered_df, values=revenue_by_product.values, names=revenue_by_product.index, title='Revenue by Product')
+st.plotly_chart(fig)
 
 # Pie chart for Units Sold by Product
 st.subheader("Units Sold by Product")
-fig, ax = plt.subplots()
-ax.pie(units_sold_by_product, labels=units_sold_by_product.index, autopct='%1.1f%%', colors=plt.cm.Paired.colors)
-ax.axis('equal')
-st.pyplot(fig)
+fig = px.pie(filtered_df, values=units_sold_by_product.values, names=units_sold_by_product.index, title='Units Sold by Product')
+st.plotly_chart(fig)
 
-# Histogram for Revenue by Seller
+# Bar chart for Revenue by Seller
 st.subheader("Revenue by Seller")
-fig, ax = plt.subplots()
-ax.bar(revenue_by_seller.index, revenue_by_seller, color=plt.cm.Paired.colors)
-st.pyplot(fig)
+fig = px.bar(revenue_by_seller, x=revenue_by_seller.index, y=revenue_by_seller.values, title='Revenue by Seller')
+st.plotly_chart(fig)
 
-# Histogram for Units Sold by Seller
+# Bar chart for Units Sold by Seller
 st.subheader("Units Sold by Seller")
-fig, ax = plt.subplots()
-ax.bar(units_sold_by_seller.index, units_sold_by_seller, color=plt.cm.Paired.colors)
-st.pyplot(fig)
+fig = px.bar(units_sold_by_seller, x=units_sold_by_seller.index, y=units_sold_by_seller.values, title='Units Sold by Seller')
+st.plotly_chart(fig)
 
-# Histogram for Revenue by Payment Type
+# Bar chart for Revenue by Payment Type
 st.subheader("Revenue by Payment Type")
-fig, ax = plt.subplots()
-ax.bar(revenue_by_payment_type.index, revenue_by_payment_type, color=plt.cm.Paired.colors)
-st.pyplot(fig)
+fig = px.bar(revenue_by_payment_type, x=revenue_by_payment_type.index, y=revenue_by_payment_type.values, title='Revenue by Payment Type')
+st.plotly_chart(fig)
 
-# Histogram for Revenue by Sales Channel
+# Bar chart for Revenue by Sales Channel
 st.subheader("Revenue by Sales Channel")
-fig, ax = plt.subplots()
-ax.bar(revenue_by_channel.index, revenue_by_channel, color=plt.cm.Paired.colors)
-st.pyplot(fig)
+fig = px.bar(revenue_by_channel, x=revenue_by_channel.index, y=revenue_by_channel.values, title='Revenue by Sales Channel')
+st.plotly_chart(fig)
 
-# Histogram for Units Sold by Sales Channel
+# Bar chart for Units Sold by Sales Channel
 st.subheader("Units Sold by Sales Channel")
-fig, ax = plt.subplots()
-ax.bar(units_sold_by_channel.index, units_sold_by_channel, color=plt.cm.Paired.colors)
-st.pyplot(fig)
+fig = px.bar(units_sold_by_channel, x=units_sold_by_channel.index, y=units_sold_by_channel.values, title='Units Sold by Sales Channel')
+st.plotly_chart(fig)
 
 # Time-Series Analysis Section
 st.header("Time-Series Analysis")
 
 # Revenue Over Time
 st.subheader("Revenue Over Time")
-fig, ax = plt.subplots()
-ax.plot(revenue_over_time.index.to_timestamp(), revenue_over_time, marker='o')
-ax.set_xlabel('Date')
-ax.set_ylabel('Revenue (S/.)')
-ax.grid(True)
-st.pyplot(fig)
+fig = px.line(revenue_over_time, x=revenue_over_time.index.to_timestamp(), y=revenue_over_time.values, title='Revenue Over Time')
+fig.update_xaxes(title_text='Date')
+fig.update_yaxes(title_text='Revenue (S/.)')
+st.plotly_chart(fig)
 
 # Units Sold Over Time
 st.subheader("Units Sold Over Time")
-fig, ax = plt.subplots()
-ax.plot(units_sold_over_time.index.to_timestamp(), units_sold_over_time, marker='o')
-ax.set_xlabel('Date')
-ax.set_ylabel('Units Sold')
-ax.grid(True)
-st.pyplot(fig)
+fig = px.line(units_sold_over_time, x=units_sold_over_time.index.to_timestamp(), y=units_sold_over_time.values, title='Units Sold Over Time')
+fig.update_xaxes(title_text='Date')
+fig.update_yaxes(title_text='Units Sold')
+st.plotly_chart(fig)
 
 # Orders Over Time
 st.subheader("Orders Over Time")
-fig, ax = plt.subplots()
-ax.plot(orders_over_time.index.to_timestamp(), orders_over_time, marker='o')
-ax.set_xlabel('Date')
-ax.set_ylabel('Number of Orders')
-ax.grid(True)
-st.pyplot(fig)
+fig = px.line(orders_over_time, x=orders_over_time.index.to_timestamp(), y=orders_over_time.values, title='Orders Over Time')
+fig.update_xaxes(title_text='Date')
+fig.update_yaxes(title_text='Number of Orders')
+st.plotly_chart(fig)
 
 # Top Buyers Section
 st.header("Top Buyers")
