@@ -92,28 +92,34 @@ st.plotly_chart(fig)
 
 # Bar chart for Revenue by Seller
 st.subheader("Revenue by Seller")
-fig = px.bar(revenue_by_seller, x=revenue_by_seller.index, y=revenue_by_seller.values, title='Revenue by Seller')
+fig = px.bar(revenue_by_seller, x=revenue_by_seller.index, y=revenue_by_seller.values, 
+             title='Revenue by Seller', color=revenue_by_seller.index, color_discrete_sequence=px.colors.qualitative.Plotly)
 st.plotly_chart(fig)
 
 # Bar chart for Units Sold by Seller
 st.subheader("Units Sold by Seller")
-fig = px.bar(units_sold_by_seller, x=units_sold_by_seller.index, y=units_sold_by_seller.values, title='Units Sold by Seller')
+fig = px.bar(units_sold_by_seller, x=units_sold_by_seller.index, y=units_sold_by_seller.values, 
+             title='Units Sold by Seller', color=units_sold_by_seller.index, color_discrete_sequence=px.colors.qualitative.Plotly)
 st.plotly_chart(fig)
 
 # Bar chart for Revenue by Payment Type
 st.subheader("Revenue by Payment Type")
-fig = px.bar(revenue_by_payment_type, x=revenue_by_payment_type.index, y=revenue_by_payment_type.values, title='Revenue by Payment Type')
+fig = px.bar(revenue_by_payment_type, x=revenue_by_payment_type.index, y=revenue_by_payment_type.values, 
+             title='Revenue by Payment Type', color=revenue_by_payment_type.index, color_discrete_sequence=px.colors.qualitative.Plotly)
 st.plotly_chart(fig)
 
 # Bar chart for Revenue by Sales Channel
 st.subheader("Revenue by Sales Channel")
-fig = px.bar(revenue_by_channel, x=revenue_by_channel.index, y=revenue_by_channel.values, title='Revenue by Sales Channel')
+fig = px.bar(revenue_by_channel, x=revenue_by_channel.index, y=revenue_by_channel.values, 
+             title='Revenue by Sales Channel', color=revenue_by_channel.index, color_discrete_sequence=px.colors.qualitative.Plotly)
 st.plotly_chart(fig)
 
 # Bar chart for Units Sold by Sales Channel
 st.subheader("Units Sold by Sales Channel")
-fig = px.bar(units_sold_by_channel, x=units_sold_by_channel.index, y=units_sold_by_channel.values, title='Units Sold by Sales Channel')
+fig = px.bar(units_sold_by_channel, x=units_sold_by_channel.index, y=units_sold_by_channel.values, 
+             title='Units Sold by Sales Channel', color=units_sold_by_channel.index, color_discrete_sequence=px.colors.qualitative.Plotly)
 st.plotly_chart(fig)
+
 
 # Time-Series Analysis Section
 st.header("Time-Series Analysis")
