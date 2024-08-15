@@ -10,8 +10,14 @@ df = pd.read_csv(sheet_url)
 # Convert 'Date' column to datetime format
 df['Date'] = pd.to_datetime(df['Date'], format="%d/%m/%Y", errors='coerce')
 
-# Convert 'Payment Amount' to numeric by removing currency symbols and converting to float
-df['Payment Amount'] = df['Payment Amount'].replace('[^\d.]', '', regex=True).astype(float)
+# Clean and convert 'Payment Amount' to numeric by removing any non-numeric characters
+df['Payment Amount'] = df['Payment Amount'].replace('[^\d.]', '', regex=True)
+
+# Handle cases with multiple periods, remove the first period (assuming it's a typo)
+df['Payment Amount'] = df['Payment Amount'].str.replace(r'^\.', '', regex=True)
+
+# Convert 'Payment Amount' to float
+df['Payment Amount'] = pd.to_numeric(df['Payment Amount'], errors='coerce')
 
 # Convert 'Amount' to numeric
 df['Amount'] = df['Amount'].astype(int)
