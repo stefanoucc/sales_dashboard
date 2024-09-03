@@ -18,7 +18,7 @@ df['Payment Amount'] = pd.to_numeric(df['Payment Amount'], errors='coerce')
 
 # Convert 'Amount' to numeric
 df['Amount'] = df['Amount'].astype(int)
-"""  """
+df['Amount'].value_counts(dropna=False)
 # Sidebar Filters
 st.sidebar.header("Filters")
 product_filter = st.sidebar.multiselect("Select Product", df['Product'].unique())
