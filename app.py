@@ -67,7 +67,7 @@ units_sold_over_time = filtered_df.groupby(filtered_df['Date'].dt.to_period('D')
 orders_over_time = filtered_df.groupby(filtered_df['Date'].dt.to_period('D'))['Order ID'].nunique()
 
 # Streamlit Dashboard Layout
-st.title("Machu Pouches Sales Dashboard")
+st.title("MP Sales Dashboard")
 
 # Overview Section
 st.header("Sales Overview")
