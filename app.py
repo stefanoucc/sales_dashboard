@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 
 # Use the Google Sheets link with ?output=csv to get the data as a CSV
-sheet_url = "https://docs.google.com/spreadsheets/d/1WLn7DH3F1Sm5ZSEHgWVEILWvvjFRsrE0b9xKrYU43Hw/export?format=csv"
+sheet_url = "https://docs.google.com/spreadsheets/d/1W_jm2sIkZiwrjHXL279VD_3nu2FyK6CUPtVyQepDQfo/export?format=csv"
 
 # Read the Google Sheets data into a pandas DataFrame
 df = pd.read_csv(sheet_url)
